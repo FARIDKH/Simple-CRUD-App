@@ -12,6 +12,8 @@ import SVProgressHUD
 
 class RegisterViewController: UIViewController , UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate{
 
+    
+    @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var profileImageView: UIImageView!
@@ -42,11 +44,10 @@ class RegisterViewController: UIViewController , UIImagePickerControllerDelegate
     }
     func handleRegister() {
         
-        guard let email = emailTextField.text else {
+        guard let email = emailTextField.text,
+            let username = usernameTextField.text else {
             return
         }
-        
-        
         if let imageData = UIImagePNGRepresentation(profileImageView.image!) {
             let imageName = NSUUID().uuidString
             let storageRef = storage.reference().child("\(imageName)")
@@ -56,16 +57,13 @@ class RegisterViewController: UIViewController , UIImagePickerControllerDelegate
                 } else {
                     if let profileImageURL = metadata?.downloadURL()?.absoluteString {
                         let userDatas = [
+                            "username" : username,
                             "email": email,
                             "pictureURL": profileImageURL
                         ]
-                        
                         self.registeringUser(values: userDatas as [String : AnyObject])
-                        
                     }
-                    
                 }
-                
             }
         }
     }
@@ -78,11 +76,8 @@ class RegisterViewController: UIViewController , UIImagePickerControllerDelegate
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        // saving image
         let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
         profileImageView.image = pickedImage
-        
-        
         imagePicker.dismiss(animated: true, completion: nil)
     }
     
@@ -95,7 +90,6 @@ class RegisterViewController: UIViewController , UIImagePickerControllerDelegate
             let password = passwordTextField.text {
             Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
                 let usersReference = self.databaseRef.child("users").child(self.uid!)
-                
                 usersReference.updateChildValues(values, withCompletionBlock: { (error, reference) in
                     if error != nil {
                         print(error)
@@ -106,7 +100,7 @@ class RegisterViewController: UIViewController , UIImagePickerControllerDelegate
                     print(error)
                 } else {
                     SVProgressHUD.dismiss()
-                    self.performSegue(withIdentifier: "gotoTableView", sender: self)
+                    self.performSegue(withIdentifier: "gotoTableViewFromRegister", sender: self)
                 }
             })
         }

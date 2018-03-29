@@ -12,5 +12,5 @@ class User {
     var email : String?
     var password : String?
     var pictureURL : String?
-    
+    var username : String?
 }

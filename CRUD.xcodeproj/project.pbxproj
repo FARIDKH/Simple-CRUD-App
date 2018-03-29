@@ -10,6 +10,7 @@
 		2E606A2920699518003F68FD /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E606A2820699518003F68FD /* Info.plist */; };
 		2E606A2B2069973C003F68FD /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E606A2A2069973C003F68FD /* UserModel.swift */; };
 		2E606A2D206C4FF9003F68FD /* PostsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E606A2C206C4FF9003F68FD /* PostsTableViewController.swift */; };
+		2E606A2F206CFFA8003F68FD /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E606A2E206CFFA8003F68FD /* LoginViewController.swift */; };
 		2EA42C2620697D50008A76C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA42C2520697D50008A76C1 /* AppDelegate.swift */; };
 		2EA42C2820697D50008A76C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA42C2720697D50008A76C1 /* ViewController.swift */; };
 		2EA42C2B20697D50008A76C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EA42C2920697D50008A76C1 /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 		2E606A2820699518003F68FD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E606A2A2069973C003F68FD /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		2E606A2C206C4FF9003F68FD /* PostsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewController.swift; sourceTree = "<group>"; };
+		2E606A2E206CFFA8003F68FD /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2EA42C2220697D50008A76C1 /* CRUD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CRUD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EA42C2520697D50008A76C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2EA42C2720697D50008A76C1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 		2EA42C4220698FD6008A76C1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2E606A2E206CFFA8003F68FD /* LoginViewController.swift */,
 				2EA42C2720697D50008A76C1 /* ViewController.swift */,
 				2EA42C4A206990C8008A76C1 /* RegisterViewController.swift */,
 				2E606A2C206C4FF9003F68FD /* PostsTableViewController.swift */,
@@ -272,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E606A2F206CFFA8003F68FD /* LoginViewController.swift in Sources */,
 				2EA42C4B206990C8008A76C1 /* RegisterViewController.swift in Sources */,
 				2EA42C2820697D50008A76C1 /* ViewController.swift in Sources */,
 				2E606A2B2069973C003F68FD /* UserModel.swift in Sources */,

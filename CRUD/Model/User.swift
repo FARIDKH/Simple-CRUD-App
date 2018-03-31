@@ -1,15 +1,16 @@
 //
-//  UserModel.swift
+//  User.swift
 //  CRUD
 //
-//  Created by Farid Qanbarov on 3/26/18.
+//  Created by Farid Qanbarov on 3/31/18.
 //  Copyright © 2018 Farid Qanbarov. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-class User {
+class User: NSObject {
     var email : String?
     var pictureURL : String?
     var username : String?
+    var posts : String?
 }

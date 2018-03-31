@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import SVProgressHUD
 
-class RegisterViewController: UIViewController , UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate{
+class RegisterViewController: UIViewController , UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     
     @IBOutlet weak var usernameTextField: UITextField!
@@ -21,8 +21,8 @@ class RegisterViewController: UIViewController , UIImagePickerControllerDelegate
     
     let uid = Auth.auth().currentUser?.uid
     let imagePicker = UIImagePickerController()
-    let storage = Storage.storage()
-    let databaseRef = Database.database().reference(fromURL: "https://crud-8dcfd.firebaseio.com/")
+    let storage = Storage.storage(url: "gs://crud-app-3232b.appspot.com/")
+    let databaseRef = Database.database().reference(fromURL: "https://crud-app-3232b.firebaseio.com/")
     var resultChecking = false
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +32,7 @@ class RegisterViewController: UIViewController , UIImagePickerControllerDelegate
         
     }
     @IBAction func registerButtonTapped(_ sender: UIButton) {
+
         SVProgressHUD.show()
         handleRegister()
         passwordTextField.resignFirstResponder()
@@ -59,7 +60,8 @@ class RegisterViewController: UIViewController , UIImagePickerControllerDelegate
                         let userDatas = [
                             "username" : username,
                             "email": email,
-                            "pictureURL": profileImageURL
+                            "pictureURL": profileImageURL,
+                            "post" : ""
                         ]
                         self.registeringUser(values: userDatas as [String : AnyObject])
                     }
@@ -70,7 +72,7 @@ class RegisterViewController: UIViewController , UIImagePickerControllerDelegate
     
     @objc func profileImageSelectHandler() {
         imagePicker.allowsEditing = false
-        imagePicker.sourceType = .savedPhotosAlbum
+        imagePicker.sourceType = .photoLibrary
         imagePicker.delegate = self
         present(imagePicker, animated: true, completion: nil)
     }
@@ -89,7 +91,11 @@ class RegisterViewController: UIViewController , UIImagePickerControllerDelegate
         if let email = emailTextField.text ,
             let password = passwordTextField.text {
             Auth.auth().createUser(withEmail: email, password: password, completion: { (user, error) in
-                let usersReference = self.databaseRef.child("users").child(self.uid!)
+                
+                guard let id = self.uid else {
+                    return
+                }
+                let usersReference = self.databaseRef.child("users").child(id)
                 usersReference.updateChildValues(values, withCompletionBlock: { (error, reference) in
                     if error != nil {
                         print(error)
